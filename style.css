@@ -455,6 +455,10 @@ div label[for=ui-component-toggle__yearly] {
 
 .ui-section-hero__layout { row-gap: var(--ui-gap-hero); }
 
+.center-content {
+  text-align: center;
+}
+
 /*--------------------------------------------------------------
 |
 | 7.3 CUSTOMER
@@ -641,6 +645,27 @@ div label[for=ui-component-toggle__yearly] {
   margin-bottom: 0;
   margin-right: auto;
 }
+
+/*--------------------------------------------------------------
+|
+| 7.9 CONTENT
+|
+--------------------------------------------------------------*/
+
+.ui-section-content {
+  padding-bottom: 2em;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.ui-section-content--image {
+  margin-bottom: var(--ui-gap-content);
+  margin-top: var(--ui-gap-content);
+}
+
+.ui-section-content--feature { row-gap: var(--ui-gap-content); }
+
+.ui-section-content--icon { margin-bottom: 1rem; }
 
 /*--------------------------------------------------------------
 8.0 MEDIA
