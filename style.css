@@ -255,7 +255,7 @@ svg {
   display: block;
   font-weight: 700;
   line-height: 1;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
 }
 
@@ -399,6 +399,41 @@ div label[for=ui-component-toggle__yearly] {
 
 .ui-section-header--menu-icon::before { top: .3125rem; }
 
+/*--------------------------------------------------------------
+  Responsive image helpers and small-screen tweaks
+  Keep minimal — ensures `public/juvenotes.webp` and `public/RCNN.webp` scale
+--------------------------------------------------------------*/
+
+.ui-img-responsive { display:block; max-width:100%; height:auto; }
+.ui-logo-small { max-width:220px; height:auto; }
+
+/* section layout tweaks for narrow viewports */
+@media (max-width: 600px) {
+  :root {
+    --ui-typography-h1: 1.5rem;
+    --ui-layout-grid: 1.5rem;
+  }
+
+  .ui-section-hero__layout { grid-template-columns: 1fr; gap: 1rem; }
+  .ui-section-content--feature { grid-template-columns: 1fr; gap: 1rem; }
+  .ui-section-project__layout { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* ensure header nav stacks and hamburger is usable */
+  .ui-section-header__layout { align-items: center; }
+  .ui-section-header--nav { flex-direction: column; gap: .5rem; }
+
+  /* Tighten space between sections on mobile: keep only hero bottom padding and a small column bottom margin */
+  .ui-section-hero { padding-bottom: 2rem; }
+  /* Small extra bottom space for centered column to avoid overlap with the feature */
+  .ui-layout-column-6.ui-layout-column-center { margin-bottom: .75rem; }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .ui-section-hero__layout { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .ui-section-project__layout { grid-template-columns: 1fr 1fr; }
+}
+
+
 .ui-section-header--menu-icon::after { top: .6875rem; }
 
 #ui-section-header--menu-id:checked ~
@@ -448,15 +483,15 @@ div label[for=ui-component-toggle__yearly] {
 --------------------------------------------------------------*/
 
 .ui-section-hero {
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
   padding-top: 5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .ui-section-hero__layout { row-gap: var(--ui-gap-hero); }
 
 .center-content {
-  text-align: center;
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
@@ -508,7 +543,7 @@ div label[for=ui-component-toggle__yearly] {
   background-color: var(--ui-color-background-secondary);
   padding-bottom: 5rem;
   padding-top: 5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .ui-section-pricing__layout {
@@ -570,7 +605,7 @@ div label[for=ui-component-toggle__yearly] {
 .ui-section-testimonial {
   padding-bottom: 5rem;
   padding-top: 5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .ui-section-testimonial__layout {
@@ -611,7 +646,7 @@ div label[for=ui-component-toggle__yearly] {
 
 .ui-section-project--answer { padding-left: 1.875rem; }
 
-.ui-section-project--note { text-align: center; }
+.ui-section-project--note { text-align: left; }
 
 /*--------------------------------------------------------------
 |
@@ -623,7 +658,7 @@ div label[for=ui-component-toggle__yearly] {
   background-color: var(--ui-color-background-secondary);
   padding-bottom: 5rem;
   padding-top: 5rem;
-  text-align: center;
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
@@ -654,8 +689,8 @@ div label[for=ui-component-toggle__yearly] {
 
 .ui-section-content {
   padding-bottom: 2em;
-  padding-top: 5rem;
-  text-align: center;
+  padding-top: 1.5rem;
+  text-align: left;
 }
 
 .ui-section-content--image {
@@ -1098,4 +1133,15 @@ div label[for=ui-component-toggle__yearly] {
     padding-top: 3rem;
   }
 
+}
+
+/* Ensure the first feature card (Juvenotes) sits visually in the middle column
+   - on medium screens (two-column grid) span full width and center
+   - on large screens (three-column grid) place in the middle column */
+@media screen and (min-width: 48rem) and (max-width: 63.99rem) {
+  .ui-layout-grid-3 > div:first-of-type { grid-column: 1 / -1; justify-self: center; }
+}
+
+@media screen and (min-width: 64rem) {
+  .ui-layout-grid-3 > div:first-of-type { grid-column: 2 / 3; justify-self: center; }
 }
