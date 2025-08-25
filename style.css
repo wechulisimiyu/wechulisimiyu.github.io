@@ -270,6 +270,9 @@ a.external-link::after {
   row-gap: var(--ui-gap-cta);
 }
 
+/* Keep CTAs left-aligned so buttons sit flush with the container edge on mobile and desktop */
+.ui-component-cta { align-items: flex-start; }
+
 /*--------------------------------------------------------------
 |
 | 6.2 BUTTON
@@ -472,7 +475,31 @@ div label[for=ui-component-toggle__yearly] {
 
   /* Make feature paragraph text align/indent like project answers on mobile */
   .ui-section-content--feature p { padding-left: 0; }
+
+  /* Show a mobile-only Headstart CTA after the tools list */
+  .ui-headstart-mobile { display: flex; margin-top: .75rem; }
 }
+
+/* Hide the Headstart CTA on wider screens */
+.ui-headstart-mobile { display: none; }
+
+/* Desktop-only helper: hide on small screens */
+.ui-hide-mobile { display: block; }
+
+.ui-email-options {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  margin-top: .75rem;
+}
+
+@media (max-width: 600px) {
+  .ui-hide-mobile { display: none !important; }
+}
+
+/* Temporary: hide alternative email chooser and mobile Headstart until ready */
+.ui-email-options { display: none !important; }
+.ui-headstart-mobile { display: none !important; }
 
 @media (min-width: 601px) and (max-width: 1024px) {
   .ui-section-hero__layout { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -548,6 +575,17 @@ div label[for=ui-component-toggle__yearly] {
 .center-content {
   text-align: left;
 }
+
+/* Ensure hero columns use a predictable vertical rhythm so the intro
+   paragraphs in both columns sit at a similar vertical level. */
+.ui-section-hero__layout > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.ui-section-hero__layout > div h1 { margin-bottom: .5rem; }
+.ui-section-hero__layout > div p.ui-text-intro { margin-top: 0; }
 
 /*--------------------------------------------------------------
 |
@@ -722,14 +760,24 @@ div label[for=ui-component-toggle__yearly] {
     grid-template-columns: auto 1fr; /* logo column + content column */
     gap: 1rem;
     align-items: start; /* align both columns at the top */
+    padding-left: 0; /* align with the site container edge for visual balance */
   }
 
+  /* Use a scalable clamp-based height so logos reach comparable visual heights
+     across a range of desktop widths without hard-coding a single px value. */
   .ui-section-project__layout > div img {
-  width: auto;
-  height: 72px; /* fixed visual logo height on desktop for consistent alignment */
-  object-fit: cover; /* fill the height and avoid top/bottom whitespace */
+    width: auto;
+    height: clamp(72px, 6vw, 96px); /* scales from 72px up to 96px */
+    object-fit: contain; /* avoid cropping logos; keep aspect ratio */
     margin: 0;
     align-self: start;
+  }
+
+  /* Target Rotary (RCNN) logo specifically if it needs extra visual height
+     to match other logos that may have less padding in the artwork. */
+  .ui-section-project__layout > div img.ui-logo-rcnn {
+    height: clamp(88px, 7vw, 110px);
+    object-fit: contain;
   }
 
   .ui-section-project__layout > div h4,
@@ -743,7 +791,7 @@ div label[for=ui-component-toggle__yearly] {
      titles appear at the same vertical level regardless of image resolution */
   .ui-section-content--feature img {
     width: auto;
-    height: clamp(48px, 6vw, 96px);
+    height: clamp(72px, 6vw, 96px);
     object-fit: contain;
     margin: 0;
     align-self: start;
@@ -818,6 +866,34 @@ div label[for=ui-component-toggle__yearly] {
 .ui-section-content#building .ui-section-content--feature,
 .ui-section-content[id="building"] .ui-section-content--feature {
   margin-top: 1.5rem; /* small breathing room so images don't crowd the intro text */
+}
+
+/* Make project entries match feature card layout: image, title, and description
+   each on their own line (stacked). Keeps visuals consistent across sizes. */
+.ui-section-project__layout > div {
+  display: block !important;
+  text-align: left;
+  padding-left: 0; /* let the container padding control horizontal alignment */
+}
+
+.ui-section-project__layout > div img {
+  display: block;
+  margin: 0 0 0.6rem 0;
+  max-width: 140px;
+  height: auto;
+}
+
+.ui-section-project__layout > div h4,
+.ui-section-project__layout > div h4 a {
+  display: block;
+  margin: 0 0 .35rem;
+}
+
+.ui-section-project__layout > div p {
+  display: block;
+  margin: 0;
+  max-width: 44rem;
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
@@ -1073,7 +1149,7 @@ div label[for=ui-component-toggle__yearly] {
   ------------------------------------------------------------*/
 
   .ui-section-hero .ui-component-cta {
-    align-items: center;
+  align-items: flex-start;
     column-gap: var(--ui-gap-cta);
     flex-direction: row;
     justify-content: start;
