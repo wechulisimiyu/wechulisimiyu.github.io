@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import Script from 'next/script'
+import { Inter } from 'next/font/google'
+import "./globals.css"; // Side-effect import for global styles
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400','500','600','700'],
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: "Wechuli Simiyu - Medical Doctor & Software Developer",
@@ -24,39 +32,38 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload and optimize fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        
-        {/* Analytics - Microsoft Clarity */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "j1myikdr0j");
-            `,
-          }}
-        />
-        
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESTQ6S1VB1" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-ESTQ6S1VB1');
-            `,
-          }}
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="referrer" content="unsafe-url" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="me" href="#" />
+        <link rel="canonical" href="/" />
+        {/* Font Awesome (single global include) */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
         />
       </head>
-      <body className="font-sans antialiased">
+      {/* Analytics scripts loaded after interactive to satisfy Next.js best practices */}
+      <Script
+        id="clarity"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "j1myikdr0j");`,
+        }}
+      />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-ESTQ6S1VB1"
+        strategy="afterInteractive"
+      />
+      <Script id="ga-config" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ESTQ6S1VB1');`}
+      </Script>
+      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>
