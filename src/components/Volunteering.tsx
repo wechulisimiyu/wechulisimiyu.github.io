@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ExternalLink } from 'lucide-react'
 
-export default function Projects() {
+export default function Volunteering() {
   const volunteerProjects = [
     {
       id: 'rotary',
@@ -13,7 +13,7 @@ export default function Projects() {
       image: '/RCNN.webp',
       alt: 'Rotary Nairobi North logo',
       url: 'https://www.instagram.com/rotaryclubofnairobinorth/',
-      className: 'ui-logo-rcnn' // Special styling for RCNN logo
+      className: 'ui-logo-rcnn'
     },
     {
       id: 'lnmb',
@@ -26,21 +26,21 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="volunteering" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="mb-8">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Volunteering
           </h2>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {volunteerProjects.map((project) => (
             <Card key={project.id} className="hover:shadow-lg transition-shadow duration-300 h-full">
               <CardHeader>
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-start mb-4">
                   <div className="relative w-24 h-24">
                     <Image
                       src={project.image}
@@ -51,20 +51,20 @@ export default function Projects() {
                     />
                   </div>
                 </div>
-                <CardTitle className="text-center">
+                <CardTitle>
                   <Link
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors group"
+                    className="flex items-center gap-2 text-xl font-bold text-gray-900 hover:text-teal-700 transition-colors group"
                   >
                     {project.title}
-                    <ExternalLink size={18} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink size={18} className="opacity-60 group-hover:text-teal-700 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-gray-600 leading-relaxed text-center">
+                <CardDescription className="text-gray-600 leading-relaxed">
                   {project.description}
                 </CardDescription>
               </CardContent>
@@ -73,7 +73,7 @@ export default function Projects() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
+        <div>
           <p className="text-lg text-gray-600">
             Want to have a conversation?{' '}
             <Link

@@ -1,8 +1,8 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Building from '@/components/Building'
-import Projects from '@/components/Projects'
 import Footer from '@/components/Footer'
+import Volunteering from '@/components/Volunteering'
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <main role="main">
         <Hero />
         <Building />
-        <Projects />
+        <Volunteering />
       </main>
       <Footer />
     </div>

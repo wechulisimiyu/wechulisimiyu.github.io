@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 export default function HeroSkills() {
   const skills = [
-    'Branding: Websites',
+    'Branding',
     'Inventory',
     'Accounting and Payments',
     'Sales and Marketing',
@@ -29,7 +29,7 @@ export default function HeroSkills() {
                 key={index}
                 className="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-sm border"
               >
-                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                <div className="w-2 h-2 bg-teal-500 rounded-full mt-2 flex-shrink-0" />
                 <span className="text-gray-700 font-medium">
                   {skill.includes('AI') ? <strong>{skill}</strong> : skill}
                 </span>
@@ -38,18 +38,18 @@ export default function HeroSkills() {
           </div>
 
           {/* Mobile CTA - Free consultation */}
-          <div className="lg:hidden">
+          {/* <div className="lg:hidden">
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="w-full"
+              className="w-full bg-teal-700 text-white border-none hover:bg-teal-800 transition-colors"
             >
               <Link href="mailto:wechuli07@gmail.com?subject=Headstart%20Request&body=Hi%20Wechuli%2C%0A%0AI%20have%20a%20few%20ideas%20and%20would%20like%20a%20free%20consultation%20to%20discuss.%20Please%20let%20me%20know%20your%20availability.%0A%0AThanks%2C%0A%5BYour%20Name%5D">
                 Headstart — Free consultation
               </Link>
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

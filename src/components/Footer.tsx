@@ -54,13 +54,6 @@ export default function Footer() {
             ))}
           </div>
         </div>
-
-        {/* Additional footer content could go here */}
-        <div className="mt-8 pt-8 border-t text-center">
-          <p className="text-xs text-gray-400">
-            Built with Next.js and Tailwind CSS
-          </p>
-        </div>
       </div>
     </footer>
   )

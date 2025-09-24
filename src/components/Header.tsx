@@ -11,7 +11,7 @@ export default function Header() {
 
   const navigationLinks = [
     { href: '#building', label: 'Building' },
-    { href: '#projects', label: 'Projects' },
+    { href: '#volunteering', label: 'Volunteering' },
     { href: '#footer', label: 'Socials' },
   ]
 
