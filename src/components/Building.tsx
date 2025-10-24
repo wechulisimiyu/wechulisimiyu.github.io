@@ -10,7 +10,16 @@ export default function Building() {
       title: 'Juvenotes',
       description: 'An aggregated platform for tertiary healthcare education, built for the African Healthcare System.',
       image: '/juvenotes.webp',
-      alt: 'Juvenotes logo'
+      alt: 'Juvenotes logo',
+      link: 'https://juvenotes.com'
+    },
+    {
+      id: 'peton-labs',
+      title: 'Peton Labs',
+      description: 'A software consultancy focused on building tech for health and tertiary education.',
+      image: '/peton-labs.png',
+      alt: 'Peton Labs logo',
+      link: 'https://petonlabs.com/'
     }
   ]
 
@@ -45,7 +54,7 @@ export default function Building() {
                 </div>
                 <CardTitle className="text-xl font-bold text-gray-900">
                   <a
-                    href="https://juvenotes.com"
+                    href={project.link || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-teal-700 transition-colors group"
